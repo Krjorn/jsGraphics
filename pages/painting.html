@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos - Pintura</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/page.css">
+</head>
+<body class="painting">
+    <nav>
+        <ul>
+            <li><a href="../index.html" class="btn">Home</a></li>
+            <li><a href="repeat.html" class="btn">Repetição</a></li>
+            <li><a href="click.html" class="btn">Clique</a></li>
+            <li><a href="animation.html" class="btn">Animação</a></li>
+            <li><a href="game.html" class="btn">Jogo</a></li>
+        </ul>
+    </nav>
+    <canvas width="600" height="400"></canvas>
+    <script>
+        var screen = document.querySelector("canvas");
+        var pencil = screen.getContext("2d");
+
+        pencil.fillStyle = "#A8D1D1";
+        pencil.fillRect(0, 0, 600, 400);
+
+        pencil.fillStyle = "#F1F7B5";
+        pencil.beginPath();
+        pencil.moveTo(0, 400);
+        pencil.lineTo(600, 0);
+        pencil.lineTo(600, 400);
+        pencil.fill();
+
+        pencil.fillStyle = "#FD8A8A";
+        pencil.fillRect(0, 200, 200, 200);
+
+        pencil.fillStyle = "#9EA1D4";
+        pencil.fillRect(400, 0, 200, 200);
+
+        pencil.fillStyle = "#FFF8E1";
+        pencil.beginPath();
+        pencil.arc(300, 200, 100, 0, 2*3.14);
+        pencil.fill();
+    </script>
+</body>
+</html>

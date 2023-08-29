@@ -1,0 +1,42 @@
+body {
+    padding: 8vh;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0 0 4rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+canvas {
+    margin-bottom: 1rem;
+}
+
+.refresh {
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin: auto;
+    border: none;
+    background: url(../img/refresh.svg) center no-repeat;
+    background-color: #45FFCA;
+    border-radius: 9999px;
+    transition: .2s ease-in;
+    cursor: pointer;
+}
+
+.refresh:hover {
+    background-color: #FEFFAC;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

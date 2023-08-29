@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos - Repetição</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/page.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../index.html" class="btn">Home</a></li>
+            <li><a href="painting.html" class="btn">Pintura</a></li>
+            <li><a href="click.html" class="btn">Clique</a></li>
+            <li><a href="animation.html" class="btn">Animação</a></li>
+            <li><a href="game.html" class="btn">Jogo</a></li>
+        </ul>
+    </nav>
+    <canvas width="600" height="400"></canvas>
+    <script>
+        var screen = document.querySelector("canvas");
+        var pencil = screen.getContext("2d");
+
+        pencil.fillStyle = "#F9F5F6";
+        pencil.fillRect(0, 0, 600, 400);
+
+        function drawRect(x, y, fillColor, strokeColor) {
+            pencil.fillStyle = fillColor;
+            pencil.fillRect(x, y, 50, 50);
+            pencil.strokeStyle = strokeColor;
+            pencil.strokeRect(x, y, 50, 50);
+        }
+
+        for(let i = 0; i < 600; i += 50) {
+            drawRect(i, 175, "#D2E9E9", "#545B77");
+        }
+    </script>
+</body>
+</html>

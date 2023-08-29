@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos - Clique</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/page.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../index.html" class="btn">Home</a></li>
+            <li><a href="painting.html" class="btn">Pintura</a></li>
+            <li><a href="repeat.html" class="btn">Repetição</a></li>
+            <li><a href="animation.html" class="btn">Animação</a></li>
+            <li><a href="game.html" class="btn">Jogo</a></li>
+        </ul>
+    </nav>
+    <p>CLIQUE NO CANVAS ABAIXO (EXPERIMENTE USAR AS TECLAS <i>ALT</i> E <i>SHIFT</i>)</p>
+    <canvas width="600" height="400"></canvas>
+    <input type="button" onclick="window.location.reload()" class="refresh">
+    <script>
+        var screen = document.querySelector("canvas");
+        var pencil = screen.getContext("2d");
+
+        pencil.fillStyle = "#F1F0E8";
+        pencil.fillRect(0, 0, 600, 400);
+
+        function randomColor() {
+            var colors = ["#96B6C5", "#BEADFA", "#FFC6AC", "#FF9B9B", "#5C8984"];
+            var random = Math.floor(Math.random() * colors.length);
+            
+            return colors[random];
+        }
+
+        function showClick(event) {
+            var x = event.pageX - screen.offsetLeft;
+            var y = event.pageY - screen.offsetTop;
+            var radius = 10;
+
+            if(event.shiftKey && event.altKey) {
+                alert("Pressione apenas uma das teclas!");
+            } else if(event.shiftKey) {
+                radius += 20;
+            } else if(event.altKey) {
+                radius -= 5;
+            }
+
+            pencil.fillStyle = randomColor();
+            pencil.beginPath();
+            pencil.arc(x, y, radius, 0, 2 * 3.14);
+            pencil.fill();
+
+            console.log(x + ", " + y);
+        }
+
+        function canDraw(event) {
+            if(draw) {
+                showClick(event);
+            }
+        }
+
+        var draw = false;
+
+        screen.onmousedown = function() {
+            draw = true;
+        }
+
+        screen.onmouseup = function() {
+            draw = false;
+        }
+
+        screen.onclick = showClick;
+        screen.onmousemove = canDraw;
+    </script>
+</body>
+</html>

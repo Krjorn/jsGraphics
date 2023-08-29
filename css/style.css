@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: #040D12;
+}
+
+a {
+    text-decoration: none;
+}
+
+.home-title {
+    font-weight: 300;
+}
+
+.g {
+    font-family: 'Londrina Shadow', cursive;
+}
+
+.a {
+    font-family: 'Londrina Solid', cursive;
+}
+
+.btn {
+    font-weight: 500;
+    color: #040D12;
+    padding: .5rem 1rem;
+    background-color: #45FFCA;
+    border-radius: 8px;
+    transition: .2s ease-in;
+    display: block;
+    width: 100px;
+}
+
+.btn:hover {
+    background-color: #FEFFAC;
+}

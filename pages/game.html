@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos - Jogo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/page.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../index.html" class="btn">Home</a></li>
+            <li><a href="painting.html" class="btn">Pintura</a></li>
+            <li><a href="repeat.html" class="btn">Repetição</a></li>
+            <li><a href="click.html" class="btn">Clique</a></li>
+            <li><a href="animation.html" class="btn">Animação</a></li>
+        </ul>
+    </nav>
+    <p>TENTE ACERTAR O CENTRO DO ALVO!</p>
+    <canvas width="600" height="400"></canvas>
+    <script>
+        var screen = document.querySelector("canvas");
+        var pencil = screen.getContext("2d");
+
+        pencil.strokeRect(0, 0, 600, 400);
+
+        function clearCanvas() {
+            pencil.clearRect(1, 1, 598, 398);
+        }
+
+        function drawCircle(x, y, radius, color) {
+            pencil.fillStyle = color;
+            pencil.beginPath();
+            pencil.arc(x, y, radius, 0, 2 * Math.PI);
+            pencil.fill();
+        }
+
+        var targetRadius = 30;
+        var middleRadius = Math.floor(targetRadius - .33 * targetRadius);
+        var finalRadius = Math.floor(middleRadius - .33 * targetRadius);
+
+        function drawTarget(x, y) {
+            drawCircle(x, y, targetRadius, "red");
+            drawCircle(x, y, middleRadius, "white");
+            drawCircle(x, y, finalRadius, "red");
+        }
+
+        var randomX;
+        var randomY;
+
+        function randomTargetPlace() {
+            var maxX = 600 - targetRadius;
+            var minX = targetRadius;
+            var maxY = 400 - targetRadius;
+            var minY = targetRadius;
+            
+            randomX = Math.floor(Math.random() * (maxX - minX + 1) + minX);
+            randomY = Math.floor(Math.random() * (maxY - minY + 1) + minY);
+        }
+
+        function moveTarget() {
+            clearCanvas();
+            randomTargetPlace();
+            drawTarget(randomX, randomY);
+        }
+
+        function shoot(event) {
+            var userX = event.pageX - screen.offsetLeft;
+            var userY = event.pageY - screen.offsetTop;
+
+            if(userX > randomX - finalRadius && userX < randomX + finalRadius && userY > randomY - finalRadius && userY < randomY + finalRadius) {
+                alert("Você acertou!");
+            }
+        }
+
+        setInterval(moveTarget, 800);
+        screen.onclick = shoot;
+    </script>
+</body>
+</html>

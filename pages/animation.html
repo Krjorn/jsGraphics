@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos - Animação</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/page.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../index.html" class="btn">Home</a></li>
+            <li><a href="painting.html" class="btn">Pintura</a></li>
+            <li><a href="repeat.html" class="btn">Repetição</a></li>
+            <li><a href="click.html" class="btn">Clique</a></li>
+            <li><a href="game.html" class="btn">Jogo</a></li>
+        </ul>
+    </nav>
+    <canvas width="600" height="400"></canvas>
+    <script>
+        var screen = document.querySelector("canvas");
+        var pencil = screen.getContext("2d");
+
+        pencil.strokeStyle = "#9A3B3B";
+        pencil.strokeRect(0, 0, 600, 400);
+
+        function drawCircle(x, y, radius) {
+            pencil.fillStyle = "#793FDF";
+            pencil.beginPath();
+            pencil.arc(x, y, radius, 0, 2 * Math.PI);
+            pencil.fill();
+        }
+
+        function clearCanvas() {
+            pencil.clearRect(1, 1, 598, 398);
+        }
+
+        var x = 300;
+        var y = 200;
+        var radius = 10;
+        var speedX = 1;
+        var speedY = 1;
+
+        function animateCircle() {
+            clearCanvas();
+            drawCircle(x, y, radius);
+
+            if(x+radius > 600 || x-radius < 0) {
+                speedX *= -1;
+            }
+
+            if(y+radius > 400 || y-radius < 0) {
+                speedY *= -1;
+            }
+
+            x += speedX;
+            y += speedY;
+        }
+
+        setInterval(animateCircle, 5);
+    </script>
+</body>
+</html>

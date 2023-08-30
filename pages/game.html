@@ -22,10 +22,12 @@
     </nav>
     <p>TENTE ACERTAR O CENTRO DO ALVO!</p>
     <canvas width="600" height="400"></canvas>
+    <div class="score">0</div>
     <script>
         var screen = document.querySelector("canvas");
         var pencil = screen.getContext("2d");
 
+        pencil.strokeStyle = '#116A7B';
         pencil.strokeRect(0, 0, 600, 400);
 
         function clearCanvas() {
@@ -68,12 +70,16 @@
             drawTarget(randomX, randomY);
         }
 
+        var score = document.querySelector(".score");
+        var currentScore = 0;
+
         function shoot(event) {
             var userX = event.pageX - screen.offsetLeft;
             var userY = event.pageY - screen.offsetTop;
 
             if(userX > randomX - finalRadius && userX < randomX + finalRadius && userY > randomY - finalRadius && userY < randomY + finalRadius) {
-                alert("Você acertou!");
+                score.innerHTML = currentScore++;
+                // alert("Você acertou!");
             }
         }
 

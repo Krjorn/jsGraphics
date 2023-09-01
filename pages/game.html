@@ -70,20 +70,44 @@
             drawTarget(randomX, randomY);
         }
 
+        function scoreSfx() {
+            var sfx = new Audio("../point.mp3");
+            return sfx.play();
+        }
+
+        function randomColor() {
+            var colors = ["#539165", "#EA1179", "#016A70", "#C63D2F"];
+            var randomIndex = Math.floor(Math.random() * colors.length);
+            return colors[randomIndex];
+        }
+
         var score = document.querySelector(".score");
         var currentScore = 0;
+
+        function scoreMilestone() {
+            var milestone = 10;
+            if(currentScore != 0) {
+                if(Number.isInteger(currentScore/milestone)) {
+                    scoreSfx();
+                    score.style.color = randomColor();
+                } else {
+                    score.style.color = "#040D12";
+                }
+            }
+        }
 
         function shoot(event) {
             var userX = event.pageX - screen.offsetLeft;
             var userY = event.pageY - screen.offsetTop;
 
             if(userX > randomX - finalRadius && userX < randomX + finalRadius && userY > randomY - finalRadius && userY < randomY + finalRadius) {
-                score.innerHTML = currentScore++;
-                // alert("Você acertou!");
+                currentScore++
+                score.innerHTML = currentScore;
+                scoreMilestone();
             }
         }
 
-        setInterval(moveTarget, 800);
+        setInterval(moveTarget, 1000);
         screen.onclick = shoot;
     </script>
 </body>
